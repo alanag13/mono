@@ -27,6 +27,12 @@ namespace MonoTests.Mono
 		}
 
 		[Test]
+		public void TestInitialize ()
+		{
+			MonoNativePlatform.Initialize ();
+		}
+
+		[Test]
 		public void MartinTest ()
 		{
 			var asm = typeof (string).Assembly;
