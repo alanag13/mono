@@ -54,6 +54,16 @@ namespace Mono
 			}
 		}
 
+		internal static void EnsureInitialized ()
+		{
+			Console.Error.WriteLine ($"DI ENSURE INITIALIZED");
+
+			if (SystemProvider == null)
+				throw new PlatformNotSupportedException ("DEPENDENCY INJECTOR");
+
+			Console.Error.WriteLine ($"DI ENSURE INITIALIZED DONE");
+		}
+
 		internal static void Register (ISystemDependencyProvider provider)
 		{
 			lock (locker) {

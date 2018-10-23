@@ -35,6 +35,8 @@ namespace MonoTests.Mono
 		[Test]
 		public void MartinTest ()
 		{
+			MonoNativePlatform.Initialize ();
+
 			var asm = typeof (string).Assembly;
 			var type = asm.GetType ("Mono.MonoNativePlatform");
 			Console.Error.WriteLine ($"TEST: {type}");

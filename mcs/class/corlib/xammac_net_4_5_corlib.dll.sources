@@ -1,0 +1,4 @@
+#include corlib.dll.sources
+
+Mono/MonoNativePlatform.cs
+Mono/MonoNativePlatformType.cs
