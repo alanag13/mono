@@ -65,19 +65,12 @@ endif
 EXTRA_libmono_native_la_SOURCES = $(common_sources) $(macos_sources) $(ios_sources) $(linux_sources) $(unix_sources) $(gss_sources)
 
 if MONO_NATIVE_PLATFORM_MACOS
-if MONO_NATIVE_COMPAT
-BCL_PROFILE = xammac
-else
-BCL_PROFILE = net_4_x
-endif
 platform_sources = $(macos_sources)
 else
 if MONO_NATIVE_PLATFORM_IOS
-BCL_PROFILE = monotouch
 platform_sources = $(ios_sources)
 else
 if MONO_NATIVE_PLATFORM_LINUX
-BCL_PROFILE = net_4_x
 platform_sources = $(linux_sources)
 endif
 endif
@@ -112,9 +105,4 @@ libmono_native_unified_la_LDFLAGS = $(MONO_NATIVE_UNIFIED_LDFLAGS)
 
 libmono_native_unified_la_LIBADD = $(MONO_NATIVE_LIBADD)
 
-MONO = ../../runtime/mono-wrapper
-BCL_BUILD_DIR = ../../mcs/class
-BCL_OUTPUT_DIR = $(BCL_BUILD_DIR)/lib/$(BCL_PROFILE)
-
-bcs_libs = mscorlib.dll System.dll
 
