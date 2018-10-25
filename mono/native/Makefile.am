@@ -58,6 +58,8 @@ gss_sources = \
 
 if ENABLE_GSS
 macos_sources += $(gss_sources)
+
+ios_sources += $(gss_sources)
 endif
 
 EXTRA_libmono_native_la_SOURCES = $(common_sources) $(macos_sources) $(ios_sources) $(linux_sources) $(unix_sources) $(gss_sources)
