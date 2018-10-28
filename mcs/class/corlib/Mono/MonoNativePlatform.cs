@@ -40,21 +40,28 @@ namespace Mono
 		}
 
 		[MethodImpl (MethodImplOptions.InternalCall)]
-		extern static void MartinTest ();
+		extern static int IncrementInternalCounter ();
+
+		[DllImport ("System.Native")]
+		extern static int mono_native_is_initialized ();
 
 		[DllImport ("System.Native")]
 		extern static int mono_native_initialize ();
 
 		public static void Initialize ()
 		{
-			Console.Error.WriteLine ($"MONO NATIVE INITIALIZE!");
 			mono_native_initialize ();
-			Console.Error.WriteLine ($"MONO NATIVE INITIALIZE #1!");
 		}
 
-		public static void Test ()
+		public static bool IsInitialized ()
 		{
-			MartinTest ();
+			return mono_native_is_initialized () != 0;
+		}
+
+		internal static int TestInternalCounter ()
+		{
+			// Atomically increments internal counter, for testing purposes only.
+			return IncrementInternalCounter ();
 		}
 	}
 }
