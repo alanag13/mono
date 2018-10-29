@@ -1801,6 +1801,9 @@ AC_TRY_COMPILE([
 
 AM_CONDITIONAL(ENABLE_GSS, test x$enable_gss = xyes)
 
+# `target_ios=yes` does not detect watch devices and fails when cross-compiling
+AC_MONO_APPLE_TARGET(TARGET_OS_IPHONE, [mono_native_platform_ios=yes])
+
 if test x$host_win32 = xno; then
 	dnl *************************************
 	dnl *** Checks for time capabilities ***
@@ -3015,7 +3018,7 @@ if test x$host_win32 = xno; then
 		AC_CHECK_TYPES([struct flock64], [AC_DEFINE(HAVE_FLOCK64, 1, struct flock64)], , [#include <fcntl.h>])
 	fi
 
-	if test x$platform_ios = xno; then
+	if test x$mono_native_platform_ios = xno; then
 		AC_CHECK_FUNC(stat64,            [AC_DEFINE(HAVE_STAT64, 1, [stat64])])
 	fi
 
@@ -5517,9 +5520,6 @@ fi
 # This can be called by automated tests both to ensure that the library has been correctly installed and also
 # to verify that it's the correct version of it.
 #
-
-# `target_ios=yes` does not detect watch devices and fails when cross-compiling
-AC_MONO_APPLE_TARGET(TARGET_OS_IPHONE, [mono_native_platform_ios=yes])
 
 sed_version_pattern='[[0-9]]\{1,2\}\(\.[[0-9]]\{1,2\}\)'
 if test x$target_osx = xyes; then
