@@ -2,7 +2,8 @@
 #include <glib.h>
 #include "mono/utils/mono-threads-api.h"
 #include "mono/utils/atomic.h"
-#include "metadata/loader.h"
+#include "mono/metadata/loader-internals.h"
+#include "mono/metadata/icall-internals.h"
 
 #include "mono-native-platform.h"
 
@@ -34,5 +35,5 @@ mono_native_initialize (void)
 	if (mono_atomic_cas_i32 (&module_initialized, TRUE, FALSE) != FALSE)
 		return;
 
-	mono_add_internal_call ("Mono.MonoNativePlatform::IncrementInternalCounter", ves_icall_MonoNativePlatform_IncrementInternalCounter);
+	mono_add_internal_call_with_flags ("Mono.MonoNativePlatform::IncrementInternalCounter", ves_icall_MonoNativePlatform_IncrementInternalCounter, TRUE);
 }
