@@ -34,7 +34,17 @@ common_sources = \
 
 macos_sources = $(unix_sources)
 
-ios_sources =
+ios_sources = \
+	pal-icalls.h \
+	pal-icalls.c \
+	../../external/corefx/src/Native/Unix/System.Native/pal_io.c \
+	../../external/corefx/src/Native/Unix/System.Native/pal_io.h \
+	../../external/corefx/src/Native/Unix/System.Native/pal_networking.c \
+	../../external/corefx/src/Native/Unix/System.Native/pal_networking.h \
+	../../external/corefx/src/Native/Unix/System.Native/pal_tcpstate.c \
+	../../external/corefx/src/Native/Unix/System.Native/pal_tcpstate.h \
+	../../external/corefx/src/Native/Unix/System.Native/pal_random.c \
+	../../external/corefx/src/Native/Unix/System.Native/pal_random.h
 
 linux_sources = $(unix_sources)
 
